@@ -21,11 +21,13 @@ int fd;
 
 fd = open("x",O_RDWR|O_CREAT);
 //ft_putstr_fd("xxxxxxxxxxxxxxxxabcfw \n fwfegeg gegeege \n fgrggreg\ngwgwtgtws",fd);
+get_next_line(fd);
+get_next_line(fd);
 
 //printf("%d \n",fd);
+/*printf("%s",get_next_line(fd));
 printf("%s",get_next_line(fd));
 printf("%s",get_next_line(fd));
 printf("%s",get_next_line(fd));
-printf("%s",get_next_line(fd));
-printf("%s",get_next_line(fd));
+printf("%s",get_next_line(fd));*/
 }

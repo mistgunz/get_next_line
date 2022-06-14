@@ -6,14 +6,14 @@
 /*   By: rnait-el <rnait-el@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 14:03:26 by rnait-el          #+#    #+#             */
-/*   Updated: 2022/06/14 18:12:35 by rnait-el         ###   ########.fr       */
+/*   Updated: 2022/06/14 22:23:36 by rnait-el         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "get_next_line.h"
 
-char	*ft_cat(char *dest, char *src, char *ptr, int len)
+char	*ft_cat(char *s1, char *s2, char *ptr, int len)
 {
 	int	i;
 	int	j;
@@ -22,16 +22,16 @@ char	*ft_cat(char *dest, char *src, char *ptr, int len)
 	i = 0;
 	while (i < len)
 	{
-		while (dest[j])
+		while (s1[j])
 		{
-			ptr[i] = dest[j];
+			ptr[i] = s1[j];
 			i++;
 			j++;
 		}
 		j = 0;
-		while (src[j])
+		while (s2[j])
 		{
-			ptr[i] = src[j];
+			ptr[i] = s2[j];
 			i++;
 			j++;
 		}
@@ -110,3 +110,55 @@ char	*ft_strdup(char *src)
 	dest[i] = '\0';
 	return (dest);
 }
+
+void	free_pointers(char **ptr1, char **ptr2)
+{
+	if (ptr1 && *ptr1)
+	{
+		free(*ptr1);
+		*ptr1 = NULL;
+	}
+	if (ptr2 && *ptr2)
+	{
+		free(*ptr2);
+		*ptr2 = NULL;
+	}
+	return ;
+}
+
+char	*subfunc(char *s, char *substr, int start, int len)
+{
+	int	i;
+
+	i = 0;
+	while (s[start] && len)
+	{
+		substr[i++] = s[start++];
+		len--;
+	}
+	substr[i] = '\0';
+	return (substr);
+}
+
+char	*ft_substr(char *s, unsigned int start, size_t len)
+{
+	char	*substr;
+	int		slen;
+	
+	slen = ft_strlen(s);
+	substr = NULL;
+	if (!s || !*s)
+		return (0);
+	if ((int)start > slen)
+		return (ft_strdup(""));
+	if (slen == (int)len)
+		substr = (char *)malloc(sizeof(char) * len - start + 1);
+	else if (slen + start >= len)
+		substr = (char *)malloc(sizeof(char) * len + 1);
+	else if (slen + start < len)
+		substr = (char *)malloc(sizeof(char) * slen + 1);
+	if (!substr)
+		return (NULL);
+	return (subfunc(s, substr, start, len));
+}
+
