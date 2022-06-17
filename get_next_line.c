@@ -6,7 +6,7 @@
 /*   By: rnait-el <rnait-el@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 14:03:41 by rnait-el          #+#    #+#             */
-/*   Updated: 2022/06/14 22:45:16 by rnait-el         ###   ########.fr       */
+/*   Updated: 2022/06/18 00:45:24 by rnait-el         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*find_line(char **str)
 		i++;
 	line = ft_substr(*str, 0, i + 1);
 	if ((*str)[i])
-		temp = ft_substr(*str, i + 1, 1000);
+		temp = ft_substr(*str, i + 1, ft_strlen(*str));
 	else
 		temp = ft_strdup("");
 	free (*str);
